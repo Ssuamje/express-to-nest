@@ -1,12 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Req } from '@nestjs/common';
 import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get()
-  async registerUser(req: Request, res: Response) {
+  @Post()
+  async registerUser(@Req() req: Request, res: Response) {
     console.log(JSON.stringify(req.body));
     return 'accept!';
   }
