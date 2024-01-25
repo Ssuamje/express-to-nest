@@ -1,25 +1,66 @@
-module.exports = {
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    project: 'tsconfig.json',
-    tsconfigRootDir: __dirname,
-    sourceType: 'module',
-  },
-  plugins: ['@typescript-eslint/eslint-plugin'],
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-  ],
-  root: true,
+const common = {
   env: {
     node: true,
+    es6: true,
     jest: true,
   },
-  ignorePatterns: ['.eslintrc.js'],
+  plugins: ['prettier', 'jest'],
+  extends: ['eslint:recommended', 'prettier'],
   rules: {
-    '@typescript-eslint/interface-name-prefix': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
+    'prettier/prettier': 'error',
+    'import/prefer-default-export': 'off',
+    'import/extensions': 'off',
+    'no-console': 'off',
+    'no-iterator': 'off',
+    'no-restricted-syntax': 'off',
+    'no-await-in-loop': 'off',
+    'consistent-return': 'off',
+    'no-shadow': 'off',
+    'no-unused-vars': 'off',
   },
+};
+
+module.exports = {
+  root: true,
+  parserOptions: {
+    ecmaVersion: 'latest',
+  },
+  overrides: [
+    {
+      ...common,
+      files: ['**/*.js'],
+      parserOptions: {
+        ecmaVersion: 'latest',
+      },
+      excludedFiles: ['.eslintrc.js', '*.config.js'],
+    },
+    {
+      ...common,
+      files: ['**/src/**/*.ts', '**/test/**/*.ts'],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: './tsconfig.json',
+      },
+      env: common.env,
+      plugins: [...common.plugins, '@typescript-eslint'],
+      extends: [
+        ...common.extends,
+        'plugin:@typescript-eslint/recommended',
+        'plugin:import/errors',
+        'plugin:import/warnings',
+        'plugin:import/typescript',
+        'prettier',
+      ],
+      rules: {
+        ...common.rules,
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+      },
+      settings: {
+        'import/resolver': {
+          typescript: {},
+        },
+      },
+    },
+  ],
 };
