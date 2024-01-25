@@ -1,0 +1,5 @@
+node_modules
+.vscode
+package.json
+serverless.yml
+README.md
