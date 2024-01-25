@@ -15,7 +15,6 @@ interface OauthValidator {
 }
 
 const getValidator = (provider: OauthProvider): OauthValidator => {
-  
   switch (provider) {
     case OauthProvider.APPLE:
       return AppleOauthValidator.getInstance();
@@ -45,7 +44,7 @@ class AppleOauthValidator implements OauthValidator {
         email: email,
       };
     } catch (e) {
-      console.log(e);
+      console.log(e); // invalidIdentityTokenException
     }
   }
 }
