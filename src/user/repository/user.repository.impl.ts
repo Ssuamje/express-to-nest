@@ -1,13 +1,13 @@
-import { DatabasePrismaClient } from 'src/database/database.prisma.client';
+import { DatabasePrismaClient } from "src/database/database.prisma.client";
 import {
   UserCreateInput,
   UserUpdateInput,
   UserWhereInput,
   UserWhereUniqueInput,
-} from './user.repository.input';
-import { UserRepository } from './user.repository.interface';
-import { User } from '../domain/user.domain';
-import { Injectable } from '@nestjs/common';
+} from "./user.repository.input";
+import { UserRepository } from "./user.repository.interface";
+import { User } from "../domain/user.domain";
+import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class UserRepositoryImpl implements UserRepository {

@@ -1,10 +1,10 @@
-import { User } from '../domain/user.domain';
+import { User } from "../domain/user.domain";
 import {
   UserCreateInput,
   UserUpdateInput,
   UserWhereInput,
   UserWhereUniqueInput,
-} from './user.repository.input';
+} from "./user.repository.input";
 
 export interface UserRepository {
   findOne(userWhereInput: UserWhereUniqueInput): Promise<User>;
@@ -13,4 +13,4 @@ export interface UserRepository {
   updateOne(user: User, userUpdateInput: UserUpdateInput): Promise<User>;
 }
 
-export const IUserRepository = Symbol('IUserRepository');
+export const IUserRepository = Symbol("IUserRepository");

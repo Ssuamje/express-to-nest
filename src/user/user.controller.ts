@@ -1,14 +1,14 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { UserService } from './user.service';
-import { UserCreateDto } from './user.create.dto';
+import { Body, Controller, Post } from "@nestjs/common";
+import { UserService } from "./user.service";
+import { UserCreateDto } from "./user.create.dto";
 
-@Controller('user')
+@Controller("user")
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
   async registerUser(@Body() dto: UserCreateDto) {
     console.log(dto);
-    return 'accept!';
+    return "accept!";
   }
 }

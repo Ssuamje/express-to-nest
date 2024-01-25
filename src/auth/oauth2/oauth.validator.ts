@@ -1,7 +1,7 @@
-import verifyToken from 'verify-apple-id-token';
+import verifyToken from "verify-apple-id-token";
 
 enum OauthProvider {
-  APPLE = 'apple',
+  APPLE = "apple",
 }
 
 type OauthValidatedResult = {
@@ -22,7 +22,7 @@ const getValidator = (provider: OauthProvider): OauthValidator => {
 };
 
 class AppleOauthValidator implements OauthValidator {
-  private readonly CLIENTS = ['com.turning.app'];
+  private readonly CLIENTS = ["com.turning.app"];
   private static INSTANCE: AppleOauthValidator;
 
   private constructor() {}

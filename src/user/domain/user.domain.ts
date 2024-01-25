@@ -1,4 +1,4 @@
-import { UserCreateInput } from '../repository/user.repository.input';
+import { UserCreateInput } from "../repository/user.repository.input";
 
 /**
  * 왜 Prisma에서 generate된 코드를 그대로 사용하지 않는가?
