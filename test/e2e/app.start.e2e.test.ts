@@ -16,6 +16,7 @@ describe("E2E 테스트를 시작한다 - UserController", () => {
   let userController: UserController;
   let userService: UserService;
   let prismaClient: PrismaClient;
+  let databaseStop: () => Promise<void>;
 
   beforeEach(async () => {
     const inMemoryDatabase = await MongoMemoryReplSet.create({
@@ -26,6 +27,9 @@ describe("E2E 테스트를 시작한다 - UserController", () => {
       inMemoryDatabase.getUri().split(",")[0] +
       `/test?replicaSet=rs0&retryWrites=true&w=majority`;
     console.log(`uri = ${uri}`);
+    databaseStop = async () => {
+      await inMemoryDatabase.stop();
+    };
     prismaClient = new PrismaClient({
       datasources: { db: { url: uri + "test" } },
     });
@@ -49,6 +53,12 @@ describe("E2E 테스트를 시작한다 - UserController", () => {
     console.log("userService");
     await app.init();
     console.log("app init");
+  });
+
+  afterEach(async () => {
+    await prismaClient.$disconnect();
+    await app.close();
+    await databaseStop();
   });
 
   describe("아마도 Describe는 Nesting이 될테지", () => {
