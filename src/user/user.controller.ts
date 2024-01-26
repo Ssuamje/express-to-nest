@@ -8,7 +8,6 @@ export class UserController {
 
   @Post()
   async registerUser(@Body() dto: UserCreateDto) {
-    console.log(dto);
-    return "accept!";
+    return await this.userService.registerUser(dto);
   }
 }
