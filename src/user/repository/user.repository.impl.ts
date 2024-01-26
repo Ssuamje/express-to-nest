@@ -37,6 +37,7 @@ export class UserRepositoryImpl implements UserRepository {
   }
 
   async createOne(userCreateInput: UserCreateInput): Promise<User | undefined> {
+    console.log(`userCreateInput = ${userCreateInput}`);
     const created = await this.databaseClient.user.create({
       data: userCreateInput,
     });
