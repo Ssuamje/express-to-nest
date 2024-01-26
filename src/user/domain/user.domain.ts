@@ -10,11 +10,11 @@ import { UserCreateInput } from "../repository/user.repository.input";
 export class User {
   id: string;
   email: string;
-  name: string;
+  name?: string;
   createdAt: Date;
   updatedAt: Date;
 
-  private constructor(
+  public constructor(
     id: string,
     email: string,
     name: string,
@@ -28,11 +28,11 @@ export class User {
     this.updatedAt = updatedAt;
   }
 
-  public static create(createInput: UserCreateInput, createdAt: Date) {
+  public static create(createInput: UserCreateInput, createdAt: Date): User {
     return new User(
-      createInput.id,
+      createInput.id ?? "",
       createInput.email,
-      createInput.name,
+      createInput.name ? createInput.name : createInput.email.split("@")[0],
       createdAt,
       createdAt,
     );

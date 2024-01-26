@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "lib",
+    "outDir": "dist",
     "rootDir": "src",
     "baseUrl": "./",
     "experimentalDecorators": true,
@@ -9,6 +9,7 @@
     "esModuleInterop": true
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "test/**/*"
   ]
 }

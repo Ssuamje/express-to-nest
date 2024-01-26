@@ -1,7 +1,8 @@
 # compiled output
 /dist
 /node_modules
-
+/lib
+generated
 # Logs
 logs
 *.log
@@ -37,3 +38,4 @@ lerna-debug.log*
 .env
 /prisma/*
 !/prisma/schema.prisma
+tsconfig.build*
