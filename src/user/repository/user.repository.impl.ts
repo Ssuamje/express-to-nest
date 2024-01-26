@@ -12,7 +12,15 @@ import { PrismaMapper } from "src/database/database.prisma.mapper";
 
 @Injectable()
 export class UserRepositoryImpl implements UserRepository {
+  async: any;
+
   constructor(private readonly databaseClient: DatabasePrismaClient) {}
+
+  async findAll(): Promise<User[]> {
+    return (await this.databaseClient.user.findMany()).map((find) =>
+      PrismaMapper.toUser(find),
+    );
+  }
 
   async findOne(userWhereInput: UserWhereUniqueInput): Promise<User | null> {
     const find = await this.databaseClient.user.findUnique({
