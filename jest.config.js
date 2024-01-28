@@ -13,4 +13,5 @@ module.exports = {
         "node_modules",
         "src"
     ],
+    globalSetup: './test/globalSetup.ts',
 }

@@ -18,7 +18,7 @@ describe("E2E 테스트를 시작한다 - UserController", () => {
   let prismaClient: PrismaClient;
   let databaseStop: () => Promise<void>;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const inMemoryDatabase = await MongoMemoryReplSet.create({
       replSet: { count: 3, name: "rs0", storageEngine: "wiredTiger" },
     });
@@ -31,7 +31,7 @@ describe("E2E 테스트를 시작한다 - UserController", () => {
       await inMemoryDatabase.stop();
     };
     prismaClient = new PrismaClient({
-      datasources: { db: { url: uri + "test" } },
+      datasources: { db: { url: uri } },
     });
     inMemoryDatabase.servers.forEach((server) => {
       console.log(server.instanceInfo);
@@ -55,7 +55,9 @@ describe("E2E 테스트를 시작한다 - UserController", () => {
     console.log("app init");
   });
 
-  afterEach(async () => {
+  afterEach(async () => {});
+
+  afterAll(async () => {
     await prismaClient.$disconnect();
     await app.close();
     await databaseStop();
