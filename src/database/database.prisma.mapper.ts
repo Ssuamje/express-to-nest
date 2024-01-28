@@ -1,5 +1,5 @@
-import { User as PrismaUser } from "src/database/prisma/generated/client";
-import { User } from "src/user/domain/user.domain";
+import { User as PrismaUser } from "./prisma/generated/client";
+import { User } from "../user/domain/user.domain";
 
 export class PrismaMapper {
   private constructor() {

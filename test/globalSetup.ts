@@ -1,3 +1,5 @@
-export default async (): Promise<void> => {
-  console.log("globalSetup");
+const setup = (): void => {
+  console.log("setup");
 };
+
+export default setup;

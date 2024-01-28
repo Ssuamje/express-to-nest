@@ -1,4 +1,3 @@
-import { DatabasePrismaClient } from "src/database/database.prisma.client";
 import {
   UserCreateInput,
   UserUpdateInput,
@@ -8,7 +7,8 @@ import {
 import { UserRepository } from "./user.repository.interface";
 import { User } from "../domain/user.domain";
 import { Injectable } from "@nestjs/common";
-import { PrismaMapper } from "src/database/database.prisma.mapper";
+import { DatabasePrismaClient } from "../../database/database.prisma.client";
+import { PrismaMapper } from "../../database/database.prisma.mapper";
 
 @Injectable()
 export class UserRepositoryImpl implements UserRepository {
