@@ -20,8 +20,9 @@ export class AuthFacadeService {
       name: "name",
       email: "email@email.com",
     });
+    const now = new Date();
     console.log("user", user);
-    console.log("now = ", new Date());
+    console.log("now = ", now.localTimeZone());
     return user;
   }
 
