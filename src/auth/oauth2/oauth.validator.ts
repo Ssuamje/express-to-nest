@@ -11,7 +11,9 @@ type OauthValidatedResult = {
 };
 
 interface OauthValidator {
-  validate: (identityToken: string) => Promise<OauthValidatedResult | undefined>;
+  validate: (
+    identityToken: string,
+  ) => Promise<OauthValidatedResult | undefined>;
 }
 
 const getValidator = (provider: OauthProvider): OauthValidator => {
@@ -22,8 +24,8 @@ const getValidator = (provider: OauthProvider): OauthValidator => {
 };
 
 class AppleOauthValidator implements OauthValidator {
-  private readonly CLIENTS = ["com.turning.app"];
   private static INSTANCE: AppleOauthValidator;
+  private readonly CLIENTS = ["com.turning.app"];
 
   private constructor() {}
 
@@ -32,7 +34,9 @@ class AppleOauthValidator implements OauthValidator {
     return this.INSTANCE;
   }
 
-  async validate(identityToken: string): Promise<OauthValidatedResult | undefined> {
+  async validate(
+    identityToken: string,
+  ): Promise<OauthValidatedResult | undefined> {
     try {
       const { subject, email } = await verifyToken({
         idToken: identityToken,

@@ -8,8 +8,8 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "yarn copy:prisma && nest start",
-    "start:dev": "yarn copy:prisma && nest start --watch",
+    "start": "yarn copy:prisma && TZ=Asia/Seoul nest start",
+    "start:dev": "yarn copy:prisma && TZ=Asia/Seoul nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "prisma:generate": "prisma generate",
@@ -59,7 +59,7 @@
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.0",
     "ts-loader": "^9.4.3",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.3"
   },

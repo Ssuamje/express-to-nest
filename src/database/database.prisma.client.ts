@@ -23,11 +23,9 @@ export class DatabasePrismaClient
   }
   async onModuleInit() {
     await this.$connect();
-    console.log("DatabasePrismaClient connected");
   }
 
   async onApplicationShutdown() {
     await this.$disconnect();
-    console.log("DatabasePrismaClient disconnected");
   }
 }

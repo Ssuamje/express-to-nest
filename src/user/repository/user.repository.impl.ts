@@ -41,6 +41,7 @@ export class UserRepositoryImpl implements UserRepository {
     const created = await this.databaseClient.user.create({
       data: userCreateInput,
     });
+    console.log(`created = ${created}`);
     return PrismaMapper.toUser(created);
   }
 

@@ -19,9 +19,9 @@ export class PrismaMapper {
     };
   }
 
-  public static toUser(prismaUser: PrismaUser | null): User {
+  public static toUser(prismaUser: PrismaUser | null): User | null {
     if (!prismaUser) {
-      throw new Error("PrismaUser cannot be null.");
+      return null;
     }
     return new User(
       prismaUser.id,

@@ -9,12 +9,12 @@ import { INestApplication } from "@nestjs/common";
 import { DatabasePrismaClient } from "../../src/database/database.prisma.client";
 import { PrismaClient } from "../../src/database/prisma/generated/client";
 import { MongoMemoryReplSet } from "mongodb-memory-server";
-import { UserService } from "../../src/user/user.service";
+import { UserCommandService } from "../../src/user/user-command.service";
 
 describe("E2E 테스트를 시작한다 - UserController", () => {
   let app: INestApplication;
   let userController: UserController;
-  let userService: UserService;
+  let userService: UserCommandService;
   let prismaClient: PrismaClient;
   let databaseStop: () => Promise<void>;
 
@@ -47,12 +47,9 @@ describe("E2E 테스트를 시작한다 - UserController", () => {
       .useValue(userController)
       .compile();
 
-    console.log("module compiled");
     app = module.createNestApplication();
-    userService = module.get<UserService>(UserService);
-    console.log("userService");
+    userService = module.get<UserCommandService>(UserCommandService);
     await app.init();
-    console.log("app init");
   });
 
   afterEach(async () => {});
@@ -78,19 +75,9 @@ describe("E2E 테스트를 시작한다 - UserController", () => {
           email: "email",
         },
       });
-      console.log("user created");
 
       const result = await prismaClient.user.findMany();
-      console.log(result);
-      // console.log("데이터가 하나 있을 때(이미 테스트 DB에 있긴 함)");
-      // const user = await userService.registerUser({
-      //   name: "test",
-      //   email: "email@email.com",
-      // });
-      // console.log(user);
-      // console.log("registerUser");
-      // const response = await request(app.getHttpServer()).get("/user");
-      // console.log(response.body);
+      expect(result.length).toBe(1);
     });
   });
 });
